@@ -20,6 +20,8 @@ private Long id;
     private String lastName;
 
     private String email;
+    @OneToMany(mappedBy = "clientCardHolder", fetch = FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
 
     @OneToMany(mappedBy="clientOwner", fetch= FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
@@ -92,4 +94,14 @@ private Long id;
 
     public Long getId() { return id;
     }
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void addCard(Card card) {
+        card.setClientCardHolder(this);
+        cards.add(card);
+    }
+
 }

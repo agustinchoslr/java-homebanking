@@ -23,7 +23,8 @@ public CommandLineRunner init(ClientRepository clientRepository,
 							  AccountRepository accountRepository,
 							  TransactionRepository transactionRepository,
 							  LoanRepository loanRepository,
-							  ClientLoanRepository clientLoanRepository){
+							  ClientLoanRepository clientLoanRepository,
+							  CardRepository cardRepository){
 	return args -> {
 		Client client1 = new Client("Melba", "Morel", "melmor@email.com");
 		Client client2 = new Client("Agustin", "Juan", "agustin@email.com");
@@ -78,6 +79,43 @@ public CommandLineRunner init(ClientRepository clientRepository,
 		clientLoanRepository.save(clientLoan2);
 		clientLoanRepository.save(clientLoan3);
 		clientLoanRepository.save(clientLoan4);
+
+
+		Card card1 = new Card(
+				CardType.DEBIT,
+				CardColor.GOLD,
+				"4556-5499-2074-4717",
+				570,
+				LocalDate.now(),
+				LocalDate.now().plusYears(5), "Melba Morel"
+		);
+		Card card2 = new Card(
+				CardType.CREDIT,
+				CardColor.TITANIUM,
+				"4556-5499-2074-4717",
+				272,
+				LocalDate.now(),
+				LocalDate.now().plusYears(2), "Melba Morel"
+		);
+		Card card3 = new Card(
+				CardType.CREDIT,
+				CardColor.SILVER,
+				"8200-7747-8262-9952",
+				928,
+				LocalDate.now(),
+				LocalDate.now().plusYears(4), "Agustín Juan"
+		);
+
+		client1.addCard(card1);
+		client1.addCard(card2);
+		client2.addCard(card3);
+
+		cardRepository.save(card1);
+		cardRepository.save(card2);
+		cardRepository.save(card3);
+
+
+
 	};
 }
 
