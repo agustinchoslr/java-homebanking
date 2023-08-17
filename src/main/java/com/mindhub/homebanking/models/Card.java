@@ -25,14 +25,13 @@ public class Card {
     public Card() {
     }
 
-    public Card(CardType type, CardColor color, String number, Integer cvv, LocalDate thruDate, LocalDate fromDate, String cardHolder) {
+    public Card( CardType type, CardColor color, String number, Integer cvv, LocalDate fromDate, LocalDate thruDate) {
         this.type = type;
         this.color = color;
         this.number = number;
         this.cvv = cvv;
-        this.thruDate = thruDate;
         this.fromDate = fromDate;
-        this.cardHolder = cardHolder;
+        this.thruDate = thruDate;
     }
 
     public Long getId() {
@@ -103,7 +102,8 @@ public class Card {
         return clientCardHolder;
     }
 
-    public void setClientCardHolder(Client clientCardHolder) {
+    public void addCardHolder(Client clientCardHolder) {
         this.clientCardHolder = clientCardHolder;
+        this.cardHolder = clientCardHolder.getFirstName() + " " + clientCardHolder.getLastName();
     }
 }

@@ -87,7 +87,7 @@ public CommandLineRunner init(ClientRepository clientRepository,
 				"4556-5499-2074-4717",
 				570,
 				LocalDate.now(),
-				LocalDate.now().plusYears(5), "Melba Morel"
+				LocalDate.now().plusYears(5)
 		);
 		Card card2 = new Card(
 				CardType.CREDIT,
@@ -95,7 +95,7 @@ public CommandLineRunner init(ClientRepository clientRepository,
 				"4556-5499-2074-4717",
 				272,
 				LocalDate.now(),
-				LocalDate.now().plusYears(2), "Melba Morel"
+				LocalDate.now().plusYears(2)
 		);
 		Card card3 = new Card(
 				CardType.CREDIT,
@@ -103,8 +103,13 @@ public CommandLineRunner init(ClientRepository clientRepository,
 				"8200-7747-8262-9952",
 				928,
 				LocalDate.now(),
-				LocalDate.now().plusYears(4), "Agustín Juan"
+				LocalDate.now().plusYears(4)
 		);
+
+
+		card1.addCardHolder(client1);
+		card2.addCardHolder(client1);
+		card3.addCardHolder(client2);
 
 		client1.addCard(card1);
 		client1.addCard(card2);

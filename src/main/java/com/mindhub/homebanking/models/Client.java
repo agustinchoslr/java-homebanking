@@ -100,7 +100,7 @@ private Long id;
     }
 
     public void addCard(Card card) {
-        card.setClientCardHolder(this);
+        card.addCardHolder(this);
         cards.add(card);
     }
 
