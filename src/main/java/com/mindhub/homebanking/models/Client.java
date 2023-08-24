@@ -18,8 +18,9 @@ private Long id;
 
     private String firstName;
     private String lastName;
-
     private String email;
+
+    private String password;
     @OneToMany(mappedBy = "clientCardHolder", fetch = FetchType.EAGER)
     private Set<Card> cards = new HashSet<>();
 
@@ -31,10 +32,11 @@ private Long id;
 
     public Client() { }
 
-    public Client(String first, String last, String mail) {
-        firstName = first;
-        lastName = last;
-        email = mail;
+    public Client(String first, String last, String mail, String pass) {
+        this.firstName = first;
+        this.lastName = last;
+        this.email = mail;
+        this.password = pass;
     }
 
 
@@ -86,6 +88,15 @@ private Long id;
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String toString() {
