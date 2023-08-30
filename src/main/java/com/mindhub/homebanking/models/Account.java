@@ -36,6 +36,13 @@ public Account(Double balance, LocalDate creationDate, String number) {
     this.creationDate = creationDate;
 }
 
+    public Account(Double balance, LocalDate creationDate, String number, Client client) {
+        this.number= number;
+        this.balance = balance;
+        this.creationDate = creationDate;
+        this.clientOwner = client;
+    }
+
 //getters y setters necesarios:
 
 
