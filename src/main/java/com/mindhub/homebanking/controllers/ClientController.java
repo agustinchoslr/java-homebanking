@@ -24,10 +24,11 @@ public class ClientController {
 
     @Autowired
     private ClientRepository clientController;
+    @Autowired
     private AccountRepository repo;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @GetMapping("/clients")
     public List<ClientDTO> getClients() {
         return clientController.findAll().stream().map(ClientDTO::new).collect(toList());

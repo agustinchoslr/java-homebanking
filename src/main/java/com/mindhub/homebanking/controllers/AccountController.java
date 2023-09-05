@@ -26,15 +26,15 @@ public class AccountController {
     @Autowired
     private ClientRepository clientRepository;
 
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
     public Set<AccountDTO> getAccounts() {
         return accountRepository.findAll().stream().map(AccountDTO::new).collect(toSet());
     }
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public AccountDTO getAccount(@PathVariable Long id){
         return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
     }
-    @GetMapping("/clients/current/accounts")
+     @GetMapping("/clients/current/accounts")
     public Set<AccountDTO> getCurrentAccounts(Authentication authentication)
     {
         Client client = clientRepository.findByEmail(authentication.getName());
@@ -66,7 +66,7 @@ public class AccountController {
         return new ResponseEntity<>("The Maximum Number of Accounts has been reached", HttpStatus.FORBIDDEN);
     }
 
-    @GetMapping("clients/current/accounts/{id}")
+    /* @GetMapping("clients/current/accounts/{id}")
     public AccountDTO getCurrentAccount(Authentication authentication, @PathVariable Long id){
 
         Client client = clientRepository.findByEmail(authentication.getName());
@@ -75,6 +75,6 @@ public class AccountController {
             return new AccountDTO(account);
         }
         return null;
-    }
+    } */
 
 }
