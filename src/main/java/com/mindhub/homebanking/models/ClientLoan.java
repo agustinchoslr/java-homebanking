@@ -9,7 +9,7 @@ public class ClientLoan {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private int amount;
+    private double amount;
     private int payments;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
@@ -27,12 +27,18 @@ public class ClientLoan {
         this.loan = loan;
     }
 
+
+    public ClientLoan(double amount, Integer payments) {
+        this.amount = amount;
+        this.payments = payments;
+    }
+
     public long getId() {
         return id;
     }
 
-    public int getAmount() {
-        return amount;
+    public double getAmount() {
+        return  amount;
     }
 
     public void setAmount(int amount) {

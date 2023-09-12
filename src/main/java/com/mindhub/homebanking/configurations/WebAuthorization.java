@@ -24,15 +24,24 @@ public class WebAuthorization {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable().authorizeRequests()
-                .antMatchers(AUTH_WHITELIST).permitAll()
-                .antMatchers("/web/index.html").permitAll()
-                .antMatchers("/api/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/api/clients", "/api/clients/{id}").hasAnyAuthority("CLIENT", "ADMIN")
-                .antMatchers("/rest/**").hasAuthority("ADMIN")
-                .antMatchers("/h2-console/**").hasAuthority("ADMIN")
-                .antMatchers("/web/**").hasAnyAuthority("CLIENT", "ADMIN")
-                .antMatchers("/api/logout").authenticated();
+
+                .antMatchers("/web/**").permitAll()
+                .antMatchers( HttpMethod.POST, "/api/login", "/api/logout", "/api/clients").permitAll()
+                .antMatchers(  "/api/transaction/**",
+                        "/api/transaction",
+                        "/api/loans",
+                        "/api/accounts",
+                        "/api/clients/current/accounts")
+                .hasAnyAuthority("CLIENT", "ADMIN")
+                .antMatchers( HttpMethod.POST, "/api/clients/current/**",
+                        "/api/transactions/**",
+                        "/api/loans").
+                hasAnyAuthority("CLIENT", "ADMIN")
+
+                .antMatchers("/manager.html", "/rest/**").hasAuthority("ADMIN")
+                .antMatchers("/h2-console").hasAuthority("ADMIN")
+
+                .antMatchers("/**").hasAuthority("CLIENT");
 
         http.formLogin()
                 .usernameParameter("email")

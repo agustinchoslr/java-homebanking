@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @SpringBootApplication
 public class HomebankingApplication {
@@ -71,9 +71,9 @@ public CommandLineRunner init(ClientRepository clientRepository,
 		account2.addTransaction(transaction4);
 		transactionRepository.save(transaction4);
 
-		Loan loan1 = new Loan("Hipotecario", 500000, Set.of(12, 24, 36, 48, 60));
-		Loan loan2 = new Loan("Personal", 100000, Set.of(6, 12, 24));
-		Loan loan3 = new Loan("Automotriz", 300000, Set.of(6, 12, 24, 36));
+		Loan loan1 = new Loan("Hipotecario", 500000, List.of(12, 24, 36, 48, 60));
+		Loan loan2 = new Loan("Personal", 100000, List.of(6, 12, 24));
+		Loan loan3 = new Loan("Automotriz", 300000, List.of(6, 12, 24, 36));
 
 		ClientLoan clientLoan1 = new ClientLoan(400000, 60, client1, loan1);
 		ClientLoan clientLoan2 = new ClientLoan(50000, 12, client1, loan2);
